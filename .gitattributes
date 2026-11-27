@@ -1,0 +1,3 @@
+# LF line endings in every checkout, matching the formatter, so Windows and
+# macOS clones format and lint the same
+* text=auto eol=lf

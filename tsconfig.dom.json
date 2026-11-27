@@ -1,0 +1,7 @@
+{
+  // Proves that the real browser audio classes satisfy Siyo's headless
+  // interfaces. This is the only config that loads the DOM lib.
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "lib": ["ES2022", "DOM"], "skipLibCheck": true },
+  "include": ["src", "test/dom-compat.ts"]
+}

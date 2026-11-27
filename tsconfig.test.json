@@ -1,0 +1,10 @@
+{
+  // Tests and compile-time type checks. Node types are allowed here.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "skipLibCheck": true
+  },
+  "include": ["src", "test"],
+  "exclude": ["test/dom-compat.ts"]
+}

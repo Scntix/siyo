@@ -1,0 +1,42 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    // Build output, installed packages and npm's lockfile are never checked
+    "includes": ["**", "!!**/dist", "!!**/node_modules", "!package-lock.json"]
+  },
+  "formatter": {
+    "enabled": true,
+    // npm rewrites package.json on every install, so its layout is left to npm
+    "includes": ["**", "!package.json"],
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all",
+      "arrowParentheses": "always"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "complexity": {
+        // tsconfig turns on noPropertyAccessFromIndexSignature, which requires
+        // record['key'] for index signatures; this rule would rewrite it to record.key
+        "useLiteralKeys": "off"
+      }
+    }
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
+}

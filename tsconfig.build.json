@@ -1,0 +1,13 @@
+{
+  // Emits the published package: ES modules plus type declarations.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist/esm",
+    "rootDir": "src",
+    "declaration": true,
+    "removeComments": false,
+    "types": []
+  },
+  "include": ["src"]
+}

@@ -1,0 +1,105 @@
+{
+  "name": "siyo",
+  "version": "0.1.0",
+  "description": "Interface sounds for desktop and web apps, synthesized live with the Web Audio API. No audio files, no dependencies.",
+  "keywords": [
+    "sound",
+    "audio",
+    "ui-sounds",
+    "interface-sounds",
+    "web-audio",
+    "synthesizer",
+    "electron",
+    "tauri",
+    "sound-effects"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Scntix (Disruptions Lab Solutions LLC)"
+  },
+  "homepage": "https://github.com/Scntix/siyo#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scntix/siyo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Scntix/siyo/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "unpkg": "./dist/browser/siyo.min.js",
+  "jsdelivr": "./dist/browser/siyo.min.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./core": {
+      "import": {
+        "types": "./dist/esm/core.d.ts",
+        "default": "./dist/esm/core.js"
+      },
+      "require": {
+        "types": "./dist/cjs/core.d.cts",
+        "default": "./dist/cjs/core.cjs"
+      }
+    },
+    "./sounds": {
+      "import": {
+        "types": "./dist/esm/sounds.d.ts",
+        "default": "./dist/esm/sounds.js"
+      },
+      "require": {
+        "types": "./dist/cjs/sounds.d.cts",
+        "default": "./dist/cjs/sounds.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "core": [
+        "dist/esm/core.d.ts"
+      ],
+      "sounds": [
+        "dist/esm/sounds.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.test.json && tsc -p tsconfig.dom.json",
+    "build": "npm run clean && tsc -p tsconfig.build.json && node scripts/build-extras.mjs",
+    "verify": "node scripts/verify-dist.mjs",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "node --import tsx --test test/*.test.ts",
+    "check": "npm run lint && npm run typecheck && npm test",
+    "prepublishOnly": "npm run check && npm run build && npm run verify"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.9",
+    "@types/node": "^26.6.11",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
